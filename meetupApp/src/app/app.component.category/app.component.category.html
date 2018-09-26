@@ -1,0 +1,19 @@
+<div class="box">
+    <div class="box-header">Categories</div>
+    <div class="box-header"><button class="btn btn-primary" (click)="reset()">Reset Selection</button></div>
+    <div class="box-body">
+        <table class="table table-responsive table-bordered table-hover table-striped" style="width:60%; margin: auto">
+            <thead>
+                <th>Name</th>
+                <th>Short Name</th>
+                <th>Select a Category</th>
+            </thead>
+            <tr *ngFor="let categ of categories; let i = index;">
+                <td>{{categ.name}}</td>
+                <td>{{categ.shortname}}</td>
+                <td><input type="checkbox" id="categ{{categ.id}}" name="categ{{categ.id}}" (change)="selectCategory($event, categ)" [disabled]="disabled" style="width:84px;" /></td>
+            </tr>
+        </table>
+    </div>
+
+</div>

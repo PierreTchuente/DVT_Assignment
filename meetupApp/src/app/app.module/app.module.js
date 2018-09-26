@@ -7,7 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var router_1 = require("@angular/router");
+var http_1 = require("@angular/http");
 var app_component_1 = require("../app.component/app.component");
+var app_component_setting_1 = require("../app.component.setting/app.component.setting");
+var app_component_group_1 = require("../app.component.group/app.component.group");
+var app_component_category_1 = require("../app.component.category/app.component.category");
+var routes = [
+    { path: 'setting', component: app_component_setting_1.SettingComponent },
+    { path: 'group', component: app_component_group_1.GroupComponent }
+];
 var AppModule = (function () {
     function AppModule() {
     }
@@ -15,8 +24,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent],
+        imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes), http_1.HttpModule],
+        declarations: [app_component_1.AppComponent, app_component_setting_1.SettingComponent, app_component_group_1.GroupComponent, app_component_category_1.CategoryComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
