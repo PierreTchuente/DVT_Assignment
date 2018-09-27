@@ -14,6 +14,7 @@ require("rxjs/add/operator/map");
 var appService = (function () {
     function appService(http) {
         this.http = http;
+        this.selectedCategory = null;
     }
     appService.prototype.getCategories = function () {
         return this.http.get('https://cors-anywhere.herokuapp.com/https://api.meetup.com/2/categories?sign=true&key=5d147b5e313f2b7740673551d291f6f').map(function (res) { return res.json(); });

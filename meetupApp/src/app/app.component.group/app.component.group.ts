@@ -19,9 +19,15 @@ export class GroupComponent{
     }
     //Function to load the list of categories.
     filterGroup (): void {
-        this.appservice.filterGroups("0").subscribe(
-            (data)=> {console.log(data); this.groups = data;}
-        );
+        if(this.appservice.selectedCategory !== null){
+            this.appservice.filterGroups(this.appservice.selectedCategory.id.toString()).subscribe(
+                (data)=> {console.log(data); this.groups = data;}
+            );
+        }else{
+            this.appservice.filterGroups("0").subscribe(
+                (data)=> {console.log(data); this.groups = data;})
+        }
+       
     }
 }
 

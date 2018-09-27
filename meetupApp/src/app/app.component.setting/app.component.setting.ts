@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {appService} from '../app.service/app.service';
 import { Category } from '../app.component.category/Category';
 
 @Component ({
@@ -8,14 +9,11 @@ import { Category } from '../app.component.category/Category';
 
 export class SettingComponent{
 
-    selectedCategory: Category; //represent a user category setting.
-
-    constructor(){
-        this.selectedCategory = null;
+    constructor(private appservice: appService){
     }
 
     //Set the user category as setting.
     receiveMessage(category: Category){
-       this.selectedCategory = category;
+       this.appservice.selectedCategory = category;
     }
 }

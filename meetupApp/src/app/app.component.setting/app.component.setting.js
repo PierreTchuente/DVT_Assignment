@@ -9,13 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var app_service_1 = require("../app.service/app.service");
 var SettingComponent = (function () {
-    function SettingComponent() {
-        this.selectedCategory = null;
+    function SettingComponent(appservice) {
+        this.appservice = appservice;
     }
     //Set the user category as setting.
     SettingComponent.prototype.receiveMessage = function (category) {
-        this.selectedCategory = category;
+        this.appservice.selectedCategory = category;
     };
     return SettingComponent;
 }());
@@ -24,7 +25,7 @@ SettingComponent = __decorate([
         selector: 'setting',
         template: "<h4>List of Categories. Select a category</h4><category (messageEvent)=\"receiveMessage($event)\"></category>" //'./app.component.setting.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [app_service_1.appService])
 ], SettingComponent);
 exports.SettingComponent = SettingComponent;
 //# sourceMappingURL=app.component.setting.js.map

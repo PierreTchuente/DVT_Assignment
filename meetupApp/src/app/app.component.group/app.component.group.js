@@ -21,7 +21,12 @@ var GroupComponent = (function () {
     //Function to load the list of categories.
     GroupComponent.prototype.filterGroup = function () {
         var _this = this;
-        this.appservice.filterGroups("0").subscribe(function (data) { console.log(data); _this.groups = data; });
+        if (this.appservice.selectedCategory !== null) {
+            this.appservice.filterGroups(this.appservice.selectedCategory.id.toString()).subscribe(function (data) { console.log(data); _this.groups = data; });
+        }
+        else {
+            this.appservice.filterGroups("0").subscribe(function (data) { console.log(data); _this.groups = data; });
+        }
     };
     return GroupComponent;
 }());
