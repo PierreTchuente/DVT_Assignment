@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {appService} from '../app.service/app.service';
 import { Category } from './Category';
 
@@ -12,9 +12,10 @@ export class CategoryComponent implements OnInit {
  
     categories: Category[];
     disabled: boolean;
-    selectedCategory: Category
+    selectedCategory: Category;
+    @Output() messageEvent = new EventEmitter<Category>();
 
-    constructor ( private appservice: appService){
+    constructor (private appservice: appService){
         this.disabled = false;
     }
     
@@ -25,6 +26,9 @@ export class CategoryComponent implements OnInit {
 
     //Function to load the list of categories.
     loadCategories (): void {
+
+        debugger;
+
         this.appservice.getCategories().subscribe(
             (data)=> {console.log(data); this.categories = data.results;}
         );
@@ -32,11 +36,12 @@ export class CategoryComponent implements OnInit {
 
     //Methods to select a Category
     selectCategory (event, categ: Category) {
-            console.log(event.target.checked);
+          
             if(event.target.checked){
                 console.log(categ);
                 this.selectedCategory = categ;
                 this.disabled = true;
+                this.messageEvent.emit(this.selectedCategory);
             }
        }
 
@@ -47,6 +52,7 @@ export class CategoryComponent implements OnInit {
         var checkElem = document.getElementById("categ" + this.selectedCategory.id.toString());
         checkElem.checked = false;
         this.selectedCategory = null;
+        this.messageEvent.emit(this.selectedCategory);
 
        }
 }

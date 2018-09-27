@@ -11,14 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var SettingComponent = (function () {
     function SettingComponent() {
-        this.selectedCategory = "Unknown";
+        this.selectedCategory = null;
     }
+    //Set the user category as setting.
+    SettingComponent.prototype.receiveMessage = function (category) {
+        this.selectedCategory = category;
+    };
     return SettingComponent;
 }());
 SettingComponent = __decorate([
     core_1.Component({
         selector: 'setting',
-        template: "<h4>List of Categories. Select a category</h4><category></category>" //'./app.component.setting.html'
+        template: "<h4>List of Categories. Select a category</h4><category (messageEvent)=\"receiveMessage($event)\"></category>" //'./app.component.setting.html'
     }),
     __metadata("design:paramtypes", [])
 ], SettingComponent);

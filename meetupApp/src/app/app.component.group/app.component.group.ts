@@ -1,20 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {appService} from '../app.service/app.service';
 
 @Component ({
     selector: 'group',
-    templateUrl: './app.component.group.html'
+    templateUrl: './app.component.group.html',
+    providers: [appService]
 })
 
-export class GroupComponent{
-    id: number;
-    name: string;
-    sort_name: string;
-    shortname: string;
+export class GroupComponent{   
 
-    constructor (){
-        this.id  = 0;
-        this.name = "unknown";
-        this.sort_name = "unknown";
-        this.shortname = "unknown";
+    groups: Groups[];
+
+    constructor (private appservice: appService){
+    }
+
+    //component initialisator
+    ngOnInit(): void {
+        this.filterGroup();
+    }
+    //Function to load the list of categories.
+    filterGroup (): void {
+
+        debugger;
+
+        this.appservice.filterGroups("0").subscribe(
+            (data)=> {console.log(data); this.groups = data; debugger;}
+        );
     }
 }
+
+interface organizer{
+    "id": number;
+    "name": string,
+    "bio": string
+}
+
+interface Groups {
+    score:number;
+    id:number;
+    name: string;
+    status: string;
+    link: string;
+    urlname: string;
+    description: string;
+    created: string;
+    city: string;
+    untranslated_city: string;
+    localized_country_name: string;
+    localized_location: string;
+    state: string;
+    join_mode: string;
+    visibility: string;
+    lat: number;
+    lon: number;
+    organizer: organizer;
+}
+
+

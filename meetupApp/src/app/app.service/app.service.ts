@@ -9,4 +9,8 @@ export class appService{
     getCategories(){
       return this.http.get('https://cors-anywhere.herokuapp.com/https://api.meetup.com/2/categories?sign=true&key=5d147b5e313f2b7740673551d291f6f').map( (res)=> res.json())
     }
+    
+    filterGroups(category_ids:string){
+      return this.http.get('https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?category=' + category_ids +'&sign=true&key=5d147b5e313f2b7740673551d291f6f').map( (res)=> res.json())
+    }
 }
