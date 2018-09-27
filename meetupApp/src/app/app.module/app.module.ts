@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import {HttpModule} from '@angular/http';
  
+import {appService} from '../app.service/app.service';
 import { AppComponent }  from '../app.component/app.component';
 import { SettingComponent } from '../app.component.setting/app.component.setting';
 import { GroupComponent } from '../app.component.group/app.component.group';
@@ -14,8 +15,9 @@ var routes = [
 ];
 
 @NgModule({
-  imports:      [ BrowserModule , RouterModule.forRoot(routes), HttpModule],
+  providers: [appService],
+  imports:  [ BrowserModule , RouterModule.forRoot(routes), HttpModule],
   declarations: [ AppComponent, SettingComponent,  GroupComponent, CategoryComponent],
-  bootstrap:    [ AppComponent ]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

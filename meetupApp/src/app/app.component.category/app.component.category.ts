@@ -4,8 +4,7 @@ import { Category } from './Category';
 
 @Component ({
     selector: 'category',
-    templateUrl: './app.component.category.html',
-    providers: [appService]
+    templateUrl: './app.component.category.html'   
 })
 
 export class CategoryComponent implements OnInit {
@@ -26,9 +25,7 @@ export class CategoryComponent implements OnInit {
 
     //Function to load the list of categories.
     loadCategories (): void {
-
-        debugger;
-
+        
         this.appservice.getCategories().subscribe(
             (data)=> {console.log(data); this.categories = data.results;}
         );

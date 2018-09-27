@@ -23,7 +23,6 @@ var CategoryComponent = (function () {
     //Function to load the list of categories.
     CategoryComponent.prototype.loadCategories = function () {
         var _this = this;
-        debugger;
         this.appservice.getCategories().subscribe(function (data) { console.log(data); _this.categories = data.results; });
     };
     //Methods to select a Category
@@ -52,8 +51,7 @@ __decorate([
 CategoryComponent = __decorate([
     core_1.Component({
         selector: 'category',
-        templateUrl: './app.component.category.html',
-        providers: [app_service_1.appService]
+        templateUrl: './app.component.category.html'
     }),
     __metadata("design:paramtypes", [app_service_1.appService])
 ], CategoryComponent);

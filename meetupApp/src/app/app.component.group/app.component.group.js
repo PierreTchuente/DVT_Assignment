@@ -21,16 +21,14 @@ var GroupComponent = (function () {
     //Function to load the list of categories.
     GroupComponent.prototype.filterGroup = function () {
         var _this = this;
-        debugger;
-        this.appservice.filterGroups("0").subscribe(function (data) { console.log(data); _this.groups = data; debugger; });
+        this.appservice.filterGroups("0").subscribe(function (data) { console.log(data); _this.groups = data; });
     };
     return GroupComponent;
 }());
 GroupComponent = __decorate([
     core_1.Component({
         selector: 'group',
-        templateUrl: './app.component.group.html',
-        providers: [app_service_1.appService]
+        templateUrl: './app.component.group.html'
     }),
     __metadata("design:paramtypes", [app_service_1.appService])
 ], GroupComponent);
