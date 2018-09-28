@@ -25,7 +25,8 @@ var GroupComponent = (function () {
             this.appservice.filterGroups(this.appservice.selectedCategory.id.toString()).subscribe(function (data) { console.log(data); _this.groups = data; });
         }
         else {
-            this.appservice.filterGroups("0").subscribe(function (data) { console.log(data); _this.groups = data; });
+            this.appservice.filterGroups("0").subscribe(//Default group id
+            function (data) { console.log(data); _this.groups = data; });
         }
     };
     return GroupComponent;

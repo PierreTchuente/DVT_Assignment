@@ -24,7 +24,7 @@ export class GroupComponent{
                 (data)=> {console.log(data); this.groups = data;}
             );
         }else{
-            this.appservice.filterGroups("0").subscribe(
+            this.appservice.filterGroups("0").subscribe(  //Default group id
                 (data)=> {console.log(data); this.groups = data;})
         }
        

@@ -13,7 +13,6 @@ var app_service_1 = require("../app.service/app.service");
 var CategoryComponent = (function () {
     function CategoryComponent(appservice) {
         this.appservice = appservice;
-        this.messageEvent = new core_1.EventEmitter();
         this.disabled = false;
     }
     //component initialisator
@@ -23,31 +22,28 @@ var CategoryComponent = (function () {
     //Function to load the list of categories.
     CategoryComponent.prototype.loadCategories = function () {
         var _this = this;
-        this.appservice.getCategories().subscribe(function (data) { console.log(data); _this.categories = data.results; });
+        this.appservice.getCategories().subscribe(function (data) {
+            console.log(data);
+            _this.appservice.categories = data.results;
+        });
     };
     //Methods to select a Category
     CategoryComponent.prototype.selectCategory = function (event, categ) {
         if (event.target.checked) {
             console.log(categ);
-            this.selectedCategory = categ;
+            this.appservice.selectedCategory = categ;
             this.disabled = true;
-            this.messageEvent.emit(this.selectedCategory);
         }
     };
     //Function to reset the category selection if user Change his mind
     CategoryComponent.prototype.reset = function () {
         this.disabled = false;
-        var checkElem = document.getElementById("categ" + this.selectedCategory.id.toString());
+        var checkElem = document.getElementById("categ" + this.appservice.selectedCategory.id.toString());
         checkElem.checked = false;
-        this.selectedCategory = null;
-        this.messageEvent.emit(this.selectedCategory);
+        this.appservice.selectedCategory = null;
     };
     return CategoryComponent;
 }());
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], CategoryComponent.prototype, "messageEvent", void 0);
 CategoryComponent = __decorate([
     core_1.Component({
         selector: 'category',

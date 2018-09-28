@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {appService} from '../app.service/app.service';
 import { Category } from './Category';
 
@@ -7,13 +7,9 @@ import { Category } from './Category';
     templateUrl: './app.component.category.html'   
 })
 
-export class CategoryComponent implements OnInit {
- 
-    categories: Category[];
+export class CategoryComponent implements OnInit { 
+   
     disabled: boolean;
-    selectedCategory: Category;
-    @Output() messageEvent = new EventEmitter<Category>();
-
     constructor (private appservice: appService){
         this.disabled = false;
     }
@@ -27,7 +23,10 @@ export class CategoryComponent implements OnInit {
     loadCategories (): void {
         
         this.appservice.getCategories().subscribe(
-            (data)=> {console.log(data); this.categories = data.results;}
+            (data)=> {
+                console.log(data);
+                this.appservice.categories = data.results;                
+            }
         );
     }
 
@@ -36,9 +35,8 @@ export class CategoryComponent implements OnInit {
           
             if(event.target.checked){
                 console.log(categ);
-                this.selectedCategory = categ;
+                this.appservice.selectedCategory = categ;
                 this.disabled = true;
-                this.messageEvent.emit(this.selectedCategory);
             }
        }
 
@@ -46,10 +44,8 @@ export class CategoryComponent implements OnInit {
        reset(){ 
 
         this.disabled = false;
-        var checkElem = document.getElementById("categ" + this.selectedCategory.id.toString()) as HTMLInputElement;
+        var checkElem = document.getElementById("categ" + this.appservice.selectedCategory.id.toString()) as HTMLInputElement;
         checkElem.checked = false;
-        this.selectedCategory = null;
-        this.messageEvent.emit(this.selectedCategory);
-
+        this.appservice.selectedCategory = null;
        }
 }

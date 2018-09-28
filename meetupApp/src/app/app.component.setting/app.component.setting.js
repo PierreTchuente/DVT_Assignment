@@ -14,16 +14,12 @@ var SettingComponent = (function () {
     function SettingComponent(appservice) {
         this.appservice = appservice;
     }
-    //Set the user category as setting.
-    SettingComponent.prototype.receiveMessage = function (category) {
-        this.appservice.selectedCategory = category;
-    };
     return SettingComponent;
 }());
 SettingComponent = __decorate([
     core_1.Component({
         selector: 'setting',
-        template: "<h4>List of Categories. Select a category</h4><category (messageEvent)=\"receiveMessage($event)\"></category>" //'./app.component.setting.html'
+        template: "<h4>List of Categories. Select a category</h4><category></category>" //'./app.component.setting.html'
     }),
     __metadata("design:paramtypes", [app_service_1.appService])
 ], SettingComponent);
