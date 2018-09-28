@@ -8,6 +8,7 @@ import { Category } from '../app.component.category/Category';
 export class appService{
 
   selectedCategory: Category; //represent a user category setting. could have been better in it own data Sharing service.
+  categories: Category[]; 
 
     constructor(private http: Http){
       this.selectedCategory = null;

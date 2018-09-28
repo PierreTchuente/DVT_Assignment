@@ -32,7 +32,7 @@ export class CategoryComponent implements OnInit {
     }
 
     //Methods to select a Category
-    selectCategory (event, categ: Category) {
+    selectCategory (event: { target: { checked: any; }; }, categ: Category) {
           
             if(event.target.checked){
                 console.log(categ);
@@ -46,7 +46,7 @@ export class CategoryComponent implements OnInit {
        reset(){ 
 
         this.disabled = false;
-        var checkElem = document.getElementById("categ" + this.selectedCategory.id.toString());
+        var checkElem = document.getElementById("categ" + this.selectedCategory.id.toString()) as HTMLInputElement;
         checkElem.checked = false;
         this.selectedCategory = null;
         this.messageEvent.emit(this.selectedCategory);
