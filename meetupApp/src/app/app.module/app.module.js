@@ -9,6 +9,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
+var forms_1 = require("@angular/forms");
 var app_service_1 = require("../app.service/app.service");
 var app_component_1 = require("../app.component/app.component");
 var app_component_setting_1 = require("../app.component.setting/app.component.setting");
@@ -26,7 +27,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         providers: [app_service_1.appService],
-        imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes), http_1.HttpModule],
+        imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes), http_1.HttpModule, forms_1.FormsModule],
         declarations: [app_component_1.AppComponent, app_component_setting_1.SettingComponent, app_component_group_1.GroupComponent, app_component_category_1.CategoryComponent],
         bootstrap: [app_component_1.AppComponent]
     })

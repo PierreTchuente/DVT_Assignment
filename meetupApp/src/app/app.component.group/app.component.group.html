@@ -1,5 +1,26 @@
-<p>Selected Category: <b> {{appservice.selectedCategory == null ? "please select a category" : appservice.selectedCategory.name}}</b> </p>
+<div class="row" style="margin-top: 4%;">
+    <div class="col-lg-5">
+        <p>Selected Category: <b> {{appservice.selectedCategory == null ? "please select a category(start with the settings)" : appservice.selectedCategory.name}}</b> </p>
+        <p>Other Categories: <b> {{otherCategoryNames}}</b> </p>
 
+    </div>
+
+    <div class="col-lg-5">
+        <div class="form-inline">
+            <label>Select a Category</label>
+            <select class="form-control" style="width: 50%;" (change)="selectCategory(category)" [(ngModel)]="category">
+                <option selected [ngValue] ="category">Add another Category</option>
+            <option *ngFor="let category of appservice.categories;" [ngValue] ="category">{{category.name}}</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <button class="btn btn-primary" (click)="Search()">Search</button>
+    </div>
+</div>
+
+<br/>
 <h4>List of meet-up Groups</h4>
 <!-- Default box -->
 <div class="box" *ngFor="let group of groups;">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {appService} from '../app.service/app.service';
+import { Category } from '../app.component.category/Category';
 
 @Component ({
     selector: 'group',
@@ -9,13 +10,19 @@ import {appService} from '../app.service/app.service';
 export class GroupComponent{   
 
     groups: Groups[];
+    otherCategoryIds: string;
+    otherCategoryNames : string;
 
     constructor (private appservice: appService){
+        this.otherCategoryNames = "";
+        if(this.appservice.selectedCategory !== null){
+            this.otherCategoryIds = this.appservice.selectedCategory.id.toString() + ","; //Initialise with the user selected Category.
+        }       
     }
 
     //component initialisator
     ngOnInit(): void {
-        this.filterGroup();
+        this.filterGroup(); //Load the list of meetup with the user selected Category.
     }
     //Function to load the list of categories.
     filterGroup (): void {
@@ -27,7 +34,23 @@ export class GroupComponent{
             this.appservice.filterGroups("0").subscribe(  //Default group id
                 (data)=> {console.log(data); this.groups = data;})
         }
-       
+    }
+
+    //Function to get the selected from the dropdown
+    selectCategory(category: Category) {
+       if(category !== null){
+        this.otherCategoryIds += category.id + ",";
+        this.otherCategoryNames += category.name + "; " ;
+       }
+    }
+
+    //Search all meetup in the categories
+    Search () {
+
+        debugger;
+
+        this.appservice.filterGroups(this.otherCategoryIds).subscribe(
+            (data)=> {console.log(data); this.groups = data;});
     }
 }
 

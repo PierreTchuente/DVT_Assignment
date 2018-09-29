@@ -13,10 +13,14 @@ var app_service_1 = require("../app.service/app.service");
 var GroupComponent = (function () {
     function GroupComponent(appservice) {
         this.appservice = appservice;
+        this.otherCategoryNames = "";
+        if (this.appservice.selectedCategory !== null) {
+            this.otherCategoryIds = this.appservice.selectedCategory.id.toString() + ","; //Initialise with the user selected Category.
+        }
     }
     //component initialisator
     GroupComponent.prototype.ngOnInit = function () {
-        this.filterGroup();
+        this.filterGroup(); //Load the list of meetup with the user selected Category.
     };
     //Function to load the list of categories.
     GroupComponent.prototype.filterGroup = function () {
@@ -28,6 +32,19 @@ var GroupComponent = (function () {
             this.appservice.filterGroups("0").subscribe(//Default group id
             function (data) { console.log(data); _this.groups = data; });
         }
+    };
+    //Function to get the selected from the dropdown
+    GroupComponent.prototype.selectCategory = function (category) {
+        if (category !== null) {
+            this.otherCategoryIds += category.id + ",";
+            this.otherCategoryNames += category.name + "; ";
+        }
+    };
+    //Search all meetup in the categories
+    GroupComponent.prototype.Search = function () {
+        var _this = this;
+        debugger;
+        this.appservice.filterGroups(this.otherCategoryIds).subscribe(function (data) { console.log(data); _this.groups = data; });
     };
     return GroupComponent;
 }());

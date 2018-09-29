@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
  
 import {appService} from '../app.service/app.service';
 import { AppComponent }  from '../app.component/app.component';
@@ -16,7 +17,7 @@ var routes = [
 
 @NgModule({
   providers: [appService],
-  imports:  [ BrowserModule , RouterModule.forRoot(routes), HttpModule],
+  imports:  [ BrowserModule , RouterModule.forRoot(routes), HttpModule, FormsModule],
   declarations: [ AppComponent, SettingComponent,  GroupComponent, CategoryComponent],
   bootstrap: [ AppComponent ]
 })
